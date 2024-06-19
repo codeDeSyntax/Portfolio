@@ -131,7 +131,7 @@ const Home = () => {
           draggable="true"
         >
           <img
-            src="me2.png"
+            src="/me2.png"
             alt="Julian Mack"
             className="rounded-full p-2 shadow-head shadow-md hover:animate-pulse hover:cursor-move duration-500 md:h-[25rem] md:w-[25rem] md:border border-head border-dashed"
           />
