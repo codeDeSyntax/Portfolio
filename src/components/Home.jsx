@@ -1,7 +1,51 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Sociallinks from './Sociallinks'
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
+import { Link } from "react-scroll";
+import Sociallinks from "./Sociallinks";
+
 const Home = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [divPosition, setDivPosition] = useState({
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0,
+  });
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [0, divPosition.height], [-10, 10]);
+  const rotateY = useTransform(x, [0, divPosition.width], [-10, 10]);
+
+  const handleMouseMove = (event) => {
+    if (!isHovered) return;
+    const { clientX, clientY } = event;
+    const { top, left, width, height } = divPosition;
+    const newX = clientX - left - width / 2;
+    const newY = clientY - top - height / 2;
+    animate(x, newX, { type: "spring", stiffness: 300, damping: 20 });
+    animate(y, newY, { type: "spring", stiffness: 300, damping: 20 });
+  };
+
+  const handleMouseEnter = (event) => {
+    const { top, left, width, height } =
+      event.currentTarget.getBoundingClientRect();
+    setDivPosition({ top, left, width, height });
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
+    animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
+  };
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -33,24 +77,53 @@ const Home = () => {
       initial="hidden"
       animate="show"
       variants={container}
-      className="flex flex-col items-center justify-center min-h-screen bg-background text-white pt-20 md:pt-24 lg:pt-28"
+      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[black] via-dark to-dark  text-white pt-20 md:pt-24 lg:pt-28"
+      name="Home"
     >
-      <header className="fixed top-0 w-full p-6 bg-primary z-50">
+      <header className="fixed top-0 w-full p-6 bg-[black] z-50">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="text-2xl text-head">Logo</div>
+          <h1 className="text-3xl font-signature text-head ml-2">Josiah-Ok</h1>
           <nav className="hidden lg:flex space-x-6 text-text">
-            <a href="#home" className="text-white">
+            <Link
+              smooth
+              duration={500}
+              className="hover:cursor-pointer"
+              to="Home"
+            >
               Home
-            </a>
-            <a href="#about" className="text-white">
+            </Link>
+            <Link
+              smooth
+              duration={500}
+              className="hover:cursor-pointer"
+              to="About"
+            >
               About
-            </a>
-            <a href="#projects" className="text-white">
+            </Link>
+            <Link
+              smooth
+              duration={500}
+              className="hover:cursor-pointer"
+              to="Experience"
+            >
+              Experience
+            </Link>
+            <Link
+              smooth
+              duration={500}
+              className="hover:cursor-pointer"
+              to="Portfolio"
+            >
               Projects
-            </a>
-            <a href="#contact" className="text-white">
+            </Link>
+            <Link
+              smooth
+              duration={500}
+              className="hover:cursor-pointer"
+              to="Contact"
+            >
               Contact
-            </a>
+            </Link>
           </nav>
           <button
             className="text-2xl lg:hidden text-head"
@@ -69,35 +142,60 @@ const Home = () => {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed top-0 left-0 w-64 h-full bg-primary p-6 z-50 lg:hidden"
+            className="fixed top-0 left-0 w-64 h-full  bg-gradient-to-b from-dark via-[black] to-[black] p-6 z-50 lg:hidden"
           >
             <button
-              className="text-2xl text-white mb-6"
+              className="text-2xl text-head font-bold mb-6"
               onClick={toggleSidebar}
             >
               ✕
             </button>
-            <ul className="space-y-4 text-text">
-              <li>
-                <a href="#home" className="text-white">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-white">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-white">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-white">
-                  Contact
-                </a>
-              </li>
+            <ul className="space-y-4 text-text flex flex-col gap-4">
+              <Link
+                smooth
+                duration={500}
+                className="hover:cursor-pointer"
+                to="Home"
+                onClick={toggleSidebar}
+              >
+                Home
+              </Link>
+              <Link
+                smooth
+                duration={500}
+                className="hover:cursor-pointer"
+                onClick={toggleSidebar}
+                to="About"
+              >
+                About
+              </Link>
+              <Link
+                smooth
+                duration={500}
+                className="hover:cursor-pointer"
+                onClick={toggleSidebar}
+                to="Experience"
+              >
+                Experience
+              </Link>
+              <Link
+                smooth
+                duration={500}
+                className="hover:cursor-pointer"
+                onClick={toggleSidebar}
+                to="Portfolio"
+              >
+                Projects
+              </Link>
+              <Link
+                smooth
+                duration={500}
+                className="hover:cursor-pointer"
+                onClick={toggleSidebar}
+                to="Contact"
+              >
+                Contact
+              </Link>
             </ul>
           </motion.div>
         )}
@@ -120,20 +218,27 @@ const Home = () => {
             <p>E-mail: julian.mack@company.com</p>
             <p>Phone: +13 5266 22 345</p>
           </div>
-          <button className="px-6 py-2 bg-accent text-head rounded-full">
+          <button className="px-6 py-2 bg-dark text-head rounded-full">
             Download CV ↓
           </button>
         </motion.div>
 
         <motion.div
-          className="flex items-center justify-center"
+          onMouseMove={handleMouseMove}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            rotateX: isHovered ? rotateX : 0,
+            rotateY: isHovered ? rotateY : 0,
+          }}
+          className="group flex items-center justify-center border border-primary py-[3rem] rounded-lg bg-gradient-to-b from-[black] via-[black] to-dark"
           variants={imageItem}
           draggable="true"
         >
           <img
-            src="/me2.png"
+            src="/Josiah.png"
             alt="Julian Mack"
-            className="rounded-full p-2 shadow-head shadow-md hover:animate-pulse hover:cursor-move duration-500 md:h-[25rem] md:w-[25rem] md:border border-head border-dashed"
+            className="rounded-full  shadow-sm shadow-head duration-500 md:h-[23rem] md:w-[23rem]"
           />
         </motion.div>
       </motion.div>

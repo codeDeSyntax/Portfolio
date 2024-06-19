@@ -14,10 +14,10 @@ const Sociallinks = () => {
         <ul>
            {
             socialLinks.map((eachLink) => 
-                <li key={eachLink.id} className={`flex justify-between items-center w-40 h-14  px-4  bg-secondary ml-[-100px] hover:rounded-md duration-300 hover:ml-[-10px] ${eachLink.style}`} >
+                <li key={eachLink.id} className={`flex justify-between items-center w-40 h-14  px-4  bg-dark ml-[-100px] hover:rounded-md duration-300 hover:ml-[-10px] ${eachLink.style}`} >
                 <a 
                  href={eachLink.href} 
-                 className="flex justify-between items-center w-full text-accent text-[16px]"
+                 className="flex justify-between items-center w-full text-head text-[16px]"
                  download={eachLink.download}
                  target="_blank" rel="noreferrer" 
                   >
