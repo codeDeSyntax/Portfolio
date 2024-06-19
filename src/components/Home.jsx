@@ -77,7 +77,7 @@ const Home = () => {
       initial="hidden"
       animate="show"
       variants={container}
-      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[black] via-dark to-dark  text-white pt-20 md:pt-24 lg:pt-28"
+      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[black] via-dark md:via-[black] to-dark md:to-dark  text-white pt-20 md:pt-24 lg:pt-28"
       name="Home"
     >
       <header className="fixed top-0 w-full p-6 bg-[black] z-50">
