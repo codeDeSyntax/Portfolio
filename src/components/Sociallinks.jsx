@@ -1,34 +1,59 @@
-import { BsFillPersonLinesFill } from 'react-icons/bs'
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
-import { MdMailOutline } from 'react-icons/md'
+import { BsFillPersonLinesFill } from "react-icons/bs";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { MdMailOutline } from "react-icons/md";
 const Sociallinks = () => {
-
-    const socialLinks = [
-        {id: 1 , icon:<FaGithub size={25}/>, text:'Github', href:'https://Github.com', style:'rounded-tr-md'},
-        {id: 2 , icon:<FaLinkedinIn size={25} />, text:'LinkedIn', href:'https://Linkedin.com'},
-        {id: 3 , icon:<MdMailOutline size={25} />, text:'Mail' ,href:'mailto:foo@gmail.com'},
-        {id: 4 , icon:<BsFillPersonLinesFill />, text:'contact', href:'./myCv.pdf' ,style:'rounded-br-md', download:true },
-    ]
+  const socialLinks = [
+    {
+      id: 1,
+      icon: <FaGithub size={25} className="text-primary" />,
+      text: "Github",
+      href: "https://Github.com",
+      style: "rounded-tr-md",
+    },
+    {
+      id: 2,
+      icon: <FaLinkedinIn size={25} className="text-primary" />,
+      text: "LinkedIn",
+      href: "https://Linkedin.com",
+    },
+    {
+      id: 3,
+      icon: <MdMailOutline size={25} className="text-primary" />,
+      text: "Mail",
+      href: "mailto:foo@gmail.com",
+    },
+    {
+      id: 4,
+      icon: <BsFillPersonLinesFill className="text-primary" />,
+      text: "contact",
+      href: "./myCv.pdf",
+      style: "rounded-br-md",
+      download: true,
+    },
+  ];
   return (
-    <div className='hidden md:hidden lg:flex flex-col top-[35%] left-0 fixed'>
-        <ul>
-           {
-            socialLinks.map((eachLink) => 
-                <li key={eachLink.id} className={`flex justify-between items-center w-40 h-14  px-4  bg-dark ml-[-100px] hover:rounded-md duration-300 hover:ml-[-10px] ${eachLink.style}`} >
-                <a 
-                 href={eachLink.href} 
-                 className="flex justify-between items-center w-full text-head text-[16px]"
-                 download={eachLink.download}
-                 target="_blank" rel="noreferrer" 
-                  >
-                    {eachLink.text}{eachLink.icon}
-                </a>
-            </li>
-            )
-           }
-        </ul> 
+    <div className="hidden md:hidden lg:flex flex-col top-[35%] left-0 fixed">
+      <ul>
+        {socialLinks.map((eachLink) => (
+          <li
+            key={eachLink.id}
+            className={`flex justify-between items-center w-40 h-14  px-4  bg-lighter ml-[-100px] hover:rounded-md duration-300 hover:ml-[-10px] ${eachLink.style}`}
+          >
+            <a
+              href={eachLink.href}
+              className="flex justify-between items-center w-full text-head text-[16px]"
+              download={eachLink.download}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {eachLink.text}
+              {eachLink.icon}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
 export default Sociallinks;
