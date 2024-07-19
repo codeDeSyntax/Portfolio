@@ -1,79 +1,205 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const projects = [
-  { id: 1, title: "Website Design", image: "/cth.jpg" },
-  { id: 2, title: "Mobile Application", image: "/essel.png" },
-  { id: 3, title: "Corporate Design", image: "/amazon.png" },
-  { id: 4, title: "Mobile Application", image: "/mern.png" },
-  { id: 5, title: "Responsive Design", image: "/github.png" },
-  { id: 6, title: "Digital Product", image: "/combo.jpg" },
+  {
+    title: "Crowdfunding App",
+    image1: "./ct1.png",
+    image2: "./ct2.png",
+    type: "UI/UX Design",
+    githubLink: "https://github.com/example/crowdfunding-app",
+    liveDemo: "https://crowdfunding-app-demo.com",
+    technologies: ["React", "Node.js", "MongoDB"],
+    imgDouble: true,
+  },
+  {
+    title: "Workout App",
+    image: "./essel.png",
+    type: "UI/UX Design",
+    githubLink: "https://github.com/example/workout-app",
+    liveDemo: "https://workout-app-demo.com",
+    technologies: ["React Native", "Firebase"],
+    imgDouble: false,
+  },
+  {
+    title: "Workout App",
+    image1: "./am1.png",
+    image2: "./am2.png",
+    type: "UI/UX Design",
+    githubLink: "https://github.com/example/workout-app",
+    liveDemo: "https://workout-app-demo.com",
+    technologies: ["React Native", "Firebase"],
+    imgDouble: true,
+  },
+
+  {
+    title: "Workout App",
+    image: "./android.webp",
+    type: "UI/UX Design",
+    githubLink: "https://github.com/example/workout-app",
+    liveDemo: "https://workout-app-demo.com",
+    technologies: ["React Native", "Firebase"],
+    imgDouble: false,
+  },
+  {
+    title: "Workout App",
+    image: "./android.webp",
+    type: "UI/UX Design",
+    githubLink: "https://github.com/example/workout-app",
+    liveDemo: "https://workout-app-demo.com",
+    technologies: ["React Native", "Firebase"],
+    imgDouble: false,
+  },
+  {
+    title: "Workout App",
+    image: "./android.webp",
+    type: "UI/UX Design",
+    githubLink: "https://github.com/example/workout-app",
+    liveDemo: "https://workout-app-demo.com",
+    technologies: ["React Native", "Firebase"],
+    imgDouble: false,
+  },
+  {
+    title: "Workout App",
+    image: "./android.webp",
+    type: "UI/UX Design",
+    githubLink: "https://github.com/example/workout-app",
+    liveDemo: "https://workout-app-demo.com",
+    technologies: ["React Native", "Firebase"],
+    imgDouble: false,
+  },
 ];
 
-const scatterAnimation = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-    x: () => Math.random() * 1000 - 500,
-    y: () => Math.random() * 1000 - 500,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    x: 0,
-    y: 0,
-    transition: { duration: 1, delay: 0.3 },
-  },
-};
-
 const PortfolioSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        damping: 10,
+        stiffness: 100,
+      },
+    },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 10,
+        stiffness: 100,
+      },
+    },
+  };
 
   return (
-    <div
-      ref={ref}
-      className="min-h-screen flex flex-col items-center bg-gradient-to-b from-dark via-[black] to-dark text-white "
-      name='Portfolio'
-    >
+    <div className="bg-purple-800 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <motion.div
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1, transition: { duration: 1 } },
-        }}
-        className="py-16"
+        animate={controls}
+        variants={containerVariants}
+        ref={ref}
+        className="max-w-7xl mx-auto"
       >
-        <h1 className="text-4xl font-bold text-head text-center">Portfolio</h1>
-        <p className="mt-4 text-xl text-gray-300 text-center text-text md:text-left">
-          Quam quisque id diam vel quam elementum. Vestibulum lectus mauris
-          ultrices eros in cursus turpis massa tincidunt.
-        </p>
+        <motion.h1
+          variants={textVariants}
+          className="text-4xl sm:text-5xl font-bold text-center text-white mb-4"
+        >
+          My Portfolio
+        </motion.h1>
+        <motion.p
+          variants={textVariants}
+          className="text-lg text-center text-purple-200 mb-12"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </motion.p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="rounded-lg overflow-hidden shadow-lg flex  flex-col justify-center items-center marker:"
+            >
+              {project.imgDouble ? (
+                <div className="flex gap-2">
+                  <img src={project.image1} alt="" className="h-[7rem] w-" />
+                  <img src={project.image2} alt="" className="h-[7rem]" />
+                </div>
+              ) : (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover rounded-b-3xl"
+                />
+              )}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-gray-600 mb-4">{project.type}</p>
+                <div className="flex space-x-4 mb-4">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-800 hover:text-purple-600"
+                  >
+                    <FaGithub size={24} />
+                  </a>
+                  <a
+                    href={project.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-800 hover:text-purple-600"
+                  >
+                    <FaExternalLinkAlt size={24} className="text-primary" />
+                  </a>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="bg-lighter text-purple-800 text-xs font-semibold px-2 py-1 rounded"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
-
-      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            custom={index}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={scatterAnimation}
-            className="relative group border border-gray-600 rounded-lg overflow-hidden"
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="absolute inset-0 bg-[black] bg-opacity-50 group-hover:bg-opacity-0 transition duration-300"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gray-800">
-              <h2 className="text-xl font-bold text-head">{project.title}</h2>
-            </div>
-          </motion.div>
-        ))}
-      </div>
     </div>
   );
 };

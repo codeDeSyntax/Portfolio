@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
-import Sociallinks from "./Sociallinks";
+import NavbarCard from "./Name";
+// import AnimatedLogo from "./Name";
+// import Sociallinks from "./Sociallinks";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,13 +32,15 @@ const Home = () => {
       initial="hidden"
       animate="show"
       variants={container}
-      className="flex flex-col items-center justify-center min-h-screen px-20 text-white pt-20 bg-background md:pt-24 lg:pt-28"
+      className="flex flex-col items-center md:justify-center min-h-screen md:px-20 text-white pt-20 bg-cover bg-center bg-no-repeat md:pt-24 lg:pt-28 rounded-br-[6rem]"
+      style={{ backgroundImage: "url('./h2.png')" }}
       name="Home"
     >
-      <header className="fixed top-0 w-full p-6 z-50 bg-background">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-signature text-head ml-2">Josiah-Ok</h1>
-          <nav className="hidden lg:flex space-x-6 text-text items-center">
+      {/* <div className="absolute inset-0 bg-black opacity-50"></div> */}
+      <header className="fixed top-0 w-full p-6 z-50 bg-background  backdrop-blur bg-opacity-30">
+        <div className="w-full flex justify-end  items-center">
+         <NavbarCard/>
+          <nav className="hidden lg:flex space-x-6 text-white">
             <Link
               smooth
               duration={500}
@@ -72,20 +76,19 @@ const Home = () => {
             <Link
               smooth
               duration={500}
-              className="hover:cursor-pointer bg-primary text-text-dark p-2 rounded-full"
+              className="hover:cursor-pointer"
               to="Contact"
             >
               Contact
             </Link>
           </nav>
           <button
-            className="text-2xl lg:hidden text-head"
+            className="text-2xl lg:hidden text-white"
             onClick={toggleSidebar}
           >
             ☰
           </button>
         </div>
-        <Sociallinks />
       </header>
 
       <AnimatePresence>
@@ -95,15 +98,15 @@ const Home = () => {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed top-0 left-0 w-64 h-full  p-6 z-50 lg:hidden"
+            className="fixed top-0 left-0 w-64 h-full bg-black bg-opacity-80 p-6 z-50 lg:hidden flex "
           >
             <button
-              className="text-2xl text-head font-bold mb-6"
+              className="text-2xl text-white font-bold mb-6"
               onClick={toggleSidebar}
             >
               ✕
             </button>
-            <ul className="space-y-4 text-text flex flex-col gap-4">
+            <ul className="space-y-4 text-white flex flex-col gap-4">
               <Link
                 smooth
                 duration={500}
@@ -143,7 +146,7 @@ const Home = () => {
               <Link
                 smooth
                 duration={500}
-                className="hover:cursor-pointer bg-primary text-text-dark"
+                className="hover:cursor-pointer"
                 onClick={toggleSidebar}
                 to="Contact"
               >
@@ -155,14 +158,14 @@ const Home = () => {
       </AnimatePresence>
 
       <motion.div
-        className="w-full mx-auto flex flex-col lg:flex-row items-center py-10 px-6 space-y-10 lg:space-y-0 lg:space-x-10 gap-30 mt-12 md:mt-0 justify-center"
+        className="w-full mx-auto flex flex-col lg:flex-row md:items-center py-10 md:px-20 space-y-10 lg:space-y-0 lg:space-x-10 gap-40 mt-12 md:mt-0 relative"
         variants={container}
       >
         <motion.div
-          className="space-y-4 text-left flex justify-center flex-col text-head"
+          className="space-y-4 text-left flex justify-center items-center flex-col text-white"
           variants={item}
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-left ">
+          <h1 className="text-3xl md:text-4xl font-bold text-left">
             Im a Front end Developer
           </h1>
           <h2 className="text-4xl md:text-5xl font-extrabold">
@@ -173,20 +176,9 @@ const Home = () => {
             <p>E-mail: minwidth49@gmail.com</p>
             <p>Phone: +233 549828492</p>
           </div>
-          <button className="px-6 py-2 bg-primary text-text-dark text-head rounded-full w-40">
+          <a href="./myCv-Josiah.pdf" className="px-6 py-2 bg-white text-black rounded-full w-40 bg-primary text-text-dark w transition-colors" download={true}>
             Download CV ↓
-          </button>
-        </motion.div>
-
-        <motion.div
-          className="flex items-center justify-center"
-          variants={item}
-        >
-          <img
-            src="./hero3.jpg"
-            alt="Josiah Okornoe"
-            className="rounded-lg shadow-sm w-full max-w-md h-auto"
-          />
+          </a>
         </motion.div>
       </motion.div>
     </motion.div>

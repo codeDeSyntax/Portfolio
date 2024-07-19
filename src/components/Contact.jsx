@@ -1,7 +1,13 @@
+import Sociallinks from "./Sociallinks";
+
 const Contact = () => {
   return (
-    <section name='Contact' className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-dark via-[black] to-dark text-head p-4">
-      <div className="w-full max-w-4xl bg-gray-800 rounded-lg shadow-lg p-8 flex flex-col items-center space-y-8">
+    <section
+      name="Contact"
+      className="min-h-screen flex flex-col justify-center items-center text-head p-4"
+    >
+      <Sociallinks/>
+      <div className="w-full max-w-4xl bg-gray-800 rounded-lg shadow-lg p-8 flex flex-col bg-lighter items-center space-y-8">
         <img
           src="/Josiah.png"
           alt="Profile"
@@ -28,7 +34,7 @@ const Contact = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue hover:bg-orange-600 text-white font-bold py-2 rounded transition duration-200"
+            className="w-full bg-blue hover:bg-orange-600 text-white font-bold py-2 rounded bg-primary text-text-dark transition duration-200"
           >
             SUBMIT
           </button>
@@ -37,6 +43,7 @@ const Contact = () => {
       <footer className="mt-8 text-center text-gray-400">
         Пример текста. Кликните, чтобы выбрать элемент.
       </footer>
+
     </section>
 
     // <div name='contact' className='w-full h-screen bg-gradient-to-b from-black to-gray-800'>

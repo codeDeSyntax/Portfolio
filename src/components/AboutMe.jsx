@@ -1,6 +1,9 @@
 const AboutMe = () => {
   return (
-    <section name='About' className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-dark via-[black] to-dark text-head p-4">
+    <section
+      name="About"
+      className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-dark via-[black] to-dark text-head p-4"
+    >
       <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center lg:items-start space-y-8 lg:space-y-0 lg:space-x-16">
         <div className="lg:w-1/2">
           <h2 className="text-4xl font-bold mb-4 text-head text-center md:text-left">
@@ -36,7 +39,7 @@ import PropTypes from "prop-types";
 
 const SkillPercentage = ({ skill, percentage }) => (
   <div className="relative flex flex-col items-center text-center">
-    <div className="bg-blue text- text-2xl font-bold rounded-full w-24 h-24 flex items-center justify-center mb-2">
+    <div className="bg-blue text- text-2xl font-bold rounded-full w-24 h-24 flex items-center justify-center mb-2 bg-primary text-text-dark">
       {percentage}
     </div>
     <h3 className="text-lg font-semibold">{skill}</h3>
