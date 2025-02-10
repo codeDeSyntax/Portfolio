@@ -1,12 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
 import NavbarCard from "./Name";
-// import AnimatedLogo from "./Name";
-// import Sociallinks from "./Sociallinks";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
+
+  const steps = [
+    { title: "Home", description: "Welcome to my portfolio" },
+    { title: "About", description: "Learn about my journey" },
+    { title: "Experience", description: "My professional background" },
+    { title: "Projects", description: "View my work" },
+    { title: "Contact", description: "Get in touch" },
+  ];
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -32,55 +39,26 @@ const Home = () => {
       initial="hidden"
       animate="show"
       variants={container}
-      className="flex flex-col items-center md:justify-center min-h-screen md:px-20 text-white pt-20 bg-cover bg-center bg-no-repeat md:pt-24 lg:pt-28 rounded-br-[6rem]"
-      style={{ backgroundImage: "url('./h2.png')" }}
+      className="flex flex-col bg-gradient-to-tr from-background via-background to-primary min-h-screen text-white"
       name="Home"
     >
-      {/* <div className="absolute inset-0 bg-black opacity-50"></div> */}
-      <header className="fixed top-0 w-full p-6 z-50 bg-background  backdrop-blur bg-opacity-30">
-        <div className="w-full flex justify-end  items-center">
-         <NavbarCard/>
-          <nav className="hidden lg:flex space-x-6 text-white">
-            <Link
-              smooth
-              duration={500}
-              className="hover:cursor-pointer"
-              to="Home"
-            >
-              Home
-            </Link>
-            <Link
-              smooth
-              duration={500}
-              className="hover:cursor-pointer"
-              to="About"
-            >
-              About
-            </Link>
-            <Link
-              smooth
-              duration={500}
-              className="hover:cursor-pointer"
-              to="Experience"
-            >
-              Experience
-            </Link>
-            <Link
-              smooth
-              duration={500}
-              className="hover:cursor-pointer"
-              to="Portfolio"
-            >
-              Projects
-            </Link>
-            <Link
-              smooth
-              duration={500}
-              className="hover:cursor-pointer"
-              to="Contact"
-            >
-              Contact
-            </Link>
+      {/* Header */}
+      <header className="fixed top-0 w-full p-6 z-50 bg-background backdrop-blur bg-opacity-30">
+        <div className="w-full flex justify-end items-center">
+          <NavbarCard />
+          <nav className="hidden lg:flex space-x-6 text-text">
+            {steps.map((step, index) => (
+              <Link
+                key={step.title}
+                smooth
+                duration={500}
+                className="hover:cursor-pointer text-text hover:text-primary transition-colors"
+                to={step.title}
+                onClick={() => setActiveStep(index)}
+              >
+                {step.title}
+              </Link>
+            ))}
           </nav>
           <button
             className="text-2xl lg:hidden text-white"
@@ -91,6 +69,7 @@ const Home = () => {
         </div>
       </header>
 
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -98,7 +77,7 @@ const Home = () => {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed top-0 left-0 w-64 h-full bg-black bg-opacity-80 p-6 z-50 lg:hidden flex "
+            className="fixed top-0 left-0 w-64 h-full bg-black bg-opacity-80 p-6 z-50 lg:hidden"
           >
             <button
               className="text-2xl text-white font-bold mb-6"
@@ -106,79 +85,113 @@ const Home = () => {
             >
               ✕
             </button>
-            <ul className="space-y-4 text-white flex flex-col gap-4">
-              <Link
-                smooth
-                duration={500}
-                className="hover:cursor-pointer"
-                to="Home"
-                onClick={toggleSidebar}
-              >
-                Home
-              </Link>
-              <Link
-                smooth
-                duration={500}
-                className="hover:cursor-pointer"
-                onClick={toggleSidebar}
-                to="About"
-              >
-                About
-              </Link>
-              <Link
-                smooth
-                duration={500}
-                className="hover:cursor-pointer"
-                onClick={toggleSidebar}
-                to="Experience"
-              >
-                Experience
-              </Link>
-              <Link
-                smooth
-                duration={500}
-                className="hover:cursor-pointer"
-                onClick={toggleSidebar}
-                to="Portfolio"
-              >
-                Projects
-              </Link>
-              <Link
-                smooth
-                duration={500}
-                className="hover:cursor-pointer"
-                onClick={toggleSidebar}
-                to="Contact"
-              >
-                Contact
-              </Link>
+            <ul className="space-y-4">
+              {steps.map((step, index) => (
+                <Link
+                  key={step.title}
+                  smooth
+                  duration={500}
+                  className="hover:cursor-pointer text-text block"
+                  to={step.title}
+                  onClick={() => {
+                    setActiveStep(index);
+                    toggleSidebar();
+                  }}
+                >
+                  {step.title}
+                </Link>
+              ))}
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Main Content */}
       <motion.div
-        className="w-full mx-auto flex flex-col lg:flex-row md:items-center py-10 md:px-20 space-y-10 lg:space-y-0 lg:space-x-10 gap-40 mt-12 md:mt-0 relative"
+        className="w-[90%] mx-auto flex flex-col lg:flex-row items-start justify-between px-6 lg:px-20 py-32 gap-12 lg:gap-24"
         variants={container}
       >
+        {/* Left Side - Portfolio Info */}
+        <motion.div className="w-full lg:w-1/2 space-y-8" variants={item}>
+          <div className="space-y-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-text">
+              Front-end Developer
+            </h1>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-text">
+              Josiah Okornoe
+            </h2>
+            <p className="text-lg text-text/80 mt-4">
+              Passionate about creating beautiful, responsive, and user-friendly
+              web experiences. Specializing in modern frontend technologies and
+              interactive design.
+            </p>
+          </div>
+
+          <div className="space-y-2 text-text text-sm md:text-base">
+            <p>📍 Accra, Kasoa St.Mateo</p>
+            <p>✉️ minwidth49@gmail.com</p>
+            <p>📱 +233 549828492</p>
+          </div>
+
+          <div className="flex space-x-4">
+            <a
+              href="./myCv-Josiah.pdf"
+              className="px-6 py-3 bg-accent text-text rounded-full hover:bg-accent/90 transition-colors inline-flex items-center space-x-2"
+              download={true}
+            >
+              <span>Download CV</span>
+              <span>↓</span>
+            </a>
+            <Link
+              to="Contact"
+              smooth
+              duration={500}
+              className="px-6 py-3 border border-accent text-text rounded-full hover:bg-accent/10 transition-colors cursor-pointer"
+            >
+              Contact Me
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Right Side - Wizard Tracker */}
         <motion.div
-          className="space-y-4 text-left flex justify-center items-center flex-col text-white"
+          className="w-full lg:w-1/2 bg-black/20 flex items-center justify-center rounded-2xl p-6"
           variants={item}
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-left">
-            Im a Front end Developer
-          </h1>
-          <h2 className="text-4xl md:text-5xl font-extrabold">
-            Josiah Okornoe
-          </h2>
-          <div className="space-y-2 text-sm md:text-base">
-            <p>Address: Accra, Kasoa St.Mateo</p>
-            <p>E-mail: minwidth49@gmail.com</p>
-            <p>Phone: +233 549828492</p>
+          <div className="space-y-8">
+            {steps.map((step, index) => (
+              <div key={step.title} className="relative flex items-start gap-4">
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                      index <= activeStep
+                        ? "bg-accent text-background"
+                        : "bg-background/20 text-text"
+                    }`}
+                  >
+                    {index + 1}
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div
+                      className={`w-0.5 h-16 ${
+                        index < activeStep ? "bg-accent" : "bg-background/20"
+                      }`}
+                    />
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3
+                    className={`text-lg font-semibold ${
+                      index <= activeStep ? "text-accent" : "text-text/60"
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="text-text/60 mt-1">{step.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <a href="./myCv-Josiah.pdf" className="px-6 py-2 bg-white text-black rounded-full w-40 bg-primary text-text-dark w transition-colors" download={true}>
-            Download CV ↓
-          </a>
         </motion.div>
       </motion.div>
     </motion.div>

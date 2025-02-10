@@ -8,24 +8,24 @@ export default {
     },
     colors: {
       text: {
-        DEFAULT: "#050315",
-        dark: "#ebe9fc",
+        DEFAULT: "#f0f0fb",
+        dark: "#070F2B",
       },
       background: {
-        DEFAULT: "#fbfbfe",
-        dark: "#010104",
+        DEFAULT: "#070f2b",
+        dark: "#070f2b",
       },
       primary: {
-        DEFAULT: "#2f27ce",
-        dark: "#3a31d8",
+        DEFAULT: "#070F2B",
+        dark: "#070F2B",
       },
       secondary: {
         DEFAULT: "#dedcff",
-        dark: "#020024",
+        dark: "#1B1A55",
       },
       accent: {
-        DEFAULT: "#433bff",
-        dark: "#0600c2",
+        DEFAULT: "#535C91",
+        dark: "#535C91",
       },
       lighter: {
         DEFAULT: "#f0f0fb",

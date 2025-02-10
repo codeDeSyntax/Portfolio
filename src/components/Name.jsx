@@ -43,7 +43,7 @@ const NavbarCard = () => {
       whileTap={{ scale: 0.95 }}
     >
       <img src="./Josiah.png" alt="Josiah" className="h-10 w-10 rounded-full" />
-      <span className="font-mono font-bold text-sm">Josiah-Ok</span>
+      <span className="font-mono text-text font-bold text-sm">Josiah-Ok</span>
     </motion.div>
   );
 };

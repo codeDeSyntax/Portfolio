@@ -1,108 +1,161 @@
-
+import React from "react";
 import { motion } from "framer-motion";
-import { FaFileDownload } from "react-icons/fa";
+import { FaBriefcase, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
 
-const skills = [
-  "Brand Development & Advertising",
-  "Direct-Response Marketing",
-  "Search Marketing: SEO & PPC",
-  "Digital Video & TV, including Super Bowl",
-  "Streaming & Radio",
-  "Out-of-Home",
-  "Influencer Marketing: Podcast & YouTube",
-  "Email Marketing, Design & Dev",
-  "Social Media (Paid & Organic)",
-  "Website Design & Development",
-  "Advertising Creative (All Mediums)",
-  "Identity Design",
-  "Conversion Rate Optimization",
-  "Copywriting (Ad, Web, & Product)",
-  "Media Planning & Buying (up to $100MM)",
-  "Content Strategy & Execution",
-  "Business Development",
+const experiences = [
+  {
+    id: 1,
+    role: "Junior develooper (Intern)",
+    company: "Central Tech Hub",
+    location: "Millenium city, Kasoa",
+    period: "2024 - Present",
+    description:
+      "Designed an Intern Registeration platform using reactjs and,restApis which improved efficieny by 40%.",
+    skills: ["React", "Node.js"],
+    achievements: [
+      "Increased system performance by 60%",
+      "Led team of 8 developers",
+      "Implemented CI/CD pipeline",
+    ],
+  },
+  {
+    id: 2,
+    role: "Junior mobile developer",
+    company: "Circa Ai",
+    location: "Accra ,Legon",
+    period: "2024",
+    description:
+      "Developed mobile interface for Artificial intelligence agent",
+    skills: ["React native"],
+    achievements: [
+      "Reduced loading time by 45%",
+      "Implemented real-time features",
+      "Mentored junior developers",
+    ],
+  },
+  {
+    id: 3,
+    role: "Frontend Developer",
+    company: "",
+    location: "",
+    period: "",
+    description:
+      "Created interactive user interfaces for enterprise clients. Focused on accessibility and performance optimization.",
+    skills: ["React", "Redux", "SASS", "Jest", "Webpack"],
+    achievements: [
+      "Improved accessibility score to 98%",
+      "Built component library",
+      "Optimized build process",
+    ],
+  },
 ];
 
-const ExpertiseSection = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 10,
-        stiffness: 100,
-      },
-    },
-  };
-
+const ExperienceSection = () => {
   return (
-    <div className="bg-purple-900 min-h-screen py-16 px-4 sm:px-6 lg:px-8 text-purple-100 flex items-center justify-center">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-        className="max-w-7xl w-full"
-      >
+    <div className="min-h-screen bg-gradient-to-tr from-background via-background to-primary py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-12">
           <motion.h2
-            variants={itemVariants}
-            className="text-xl sm:text-2xl font-light mb-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-lg sm:text-xl font-light mb-2 text-accent"
           >
-            MY SKILLS
+            MY JOURNEY
           </motion.h2>
           <motion.h1
-            variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-text"
           >
-            Expertise
+            Professional Experience
           </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className="text-base sm:text-lg mb-8 max-w-2xl mx-auto"
-          >
-            Two decades of hands-on experience and hundreds of millions in spend
-            have yielded a diverse skillset that touches on most every function.
-            This is a partial list.
-          </motion.p>
-
-          <motion.button
-            variants={itemVariants}
-            className="bg-primary text-text-dark px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center space-x-2 mx-auto hover:bg-pink-600 transition duration-300"
-          >
-            <span>RESUME</span>
-            <FaFileDownload />
-          </motion.button>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4"
-        >
-          {skills.map((skill, index) => (
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-accent/20" />
+
+          {/* Experience Cards */}
+          {experiences.map((exp, index) => (
             <motion.div
-              key={index}
-              variants={itemVariants}
-              className="flex items-center"
+              key={exp.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              className={`relative mb-12 lg:mb-16 ${
+                index % 2 === 0 ? "lg:pr-16" : "lg:pl-16 lg:ml-auto"
+              } lg:w-1/2`}
             >
-              <div className="w-6 h-0.5 bg-pink-500 mr-4 flex-shrink-0"></div>
-              <p className="text-sm sm:text-base">{skill}</p>
+              {/* Timeline dot */}
+              <div className="hidden lg:block absolute top-0 w-10 h-10 rounded-full bg-accent shadow-lg shadow-accent/30">
+                <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-25" />
+              </div>
+
+              {/* Card */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="relative bg-background/50 backdrop-blur p-6 rounded-lg shadow-lg hover:shadow-accent/20 transition-all duration-300"
+              >
+                <div className="flex flex-col sm:flex-row justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-text mb-1">
+                      {exp.role}
+                    </h3>
+                    <div className="flex items-center gap-2 text-sm text-text/70 mb-2">
+                      <FaBriefcase className="text-accent" />
+                      <span>{exp.company}</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-start sm:items-end gap-1 text-sm text-text/70">
+                    <div className="flex items-center gap-2">
+                      <FaCalendar className="text-accent" />
+                      <span>{exp.period}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FaMapMarkerAlt className="text-accent" />
+                      <span>{exp.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-text/80 mb-4">{exp.description}</p>
+
+                {/* Skills */}
+                <div className="mb-4">
+                  <div className="flex flex-wrap gap-2">
+                    {exp.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Achievements */}
+                <div className="space-y-2">
+                  {exp.achievements.map((achievement, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 text-sm text-text/80"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                      {achievement}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default ExpertiseSection;
+export default ExperienceSection;
