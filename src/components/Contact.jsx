@@ -128,7 +128,7 @@ const ContactSection = () => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-8 py-4 bg-accent text-background rounded-lg font-medium hover:bg-accent/90 transition-colors"
+                  className="w-full px-8 py-4 bg-[#6b21a8] text-text rounded-lg font-medium hover:bg-accent/90 transition-colors"
                 >
                   Send Message
                 </motion.button>

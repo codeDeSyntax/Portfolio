@@ -101,7 +101,7 @@ const ExpertiseSection = () => {
             href="./myCv-Josiah.pdf"
             download
             variants={itemVariants}
-            className="bg-accent text-background px-6 py-3 rounded-full inline-flex items-center space-x-3 hover:bg-accent/90 transition duration-300 shadow-lg hover:shadow-accent/20"
+            className="bg-[#6b21a8] text-background px-6 py-3 rounded-full inline-flex items-center space-x-3 hover:bg-accent/90 transition duration-300 shadow-lg hover:shadow-accent/20"
           >
             <span>Download Resume</span>
             <FaFileDownload />

@@ -39,7 +39,7 @@ const Home = () => {
       initial="hidden"
       animate="show"
       variants={container}
-      className="flex flex-col bg-gradient-to-tr from-background via-background to-primary min-h-screen text-white"
+      className="flex flex-col bg-gradient-to-b  from-background via-background to-primary min-h-screen text-white"
       name="Home"
     >
       {/* Header */}
@@ -108,7 +108,7 @@ const Home = () => {
 
       {/* Main Content */}
       <motion.div
-        className="w-[90%] mx-auto flex flex-col lg:flex-row items-start justify-between px-6 lg:px-20 py-32 gap-12 lg:gap-24"
+        className="md:w-[90%] mx-auto flex flex-col lg:flex-row items-start justify-between px-6 lg:px-20 py-32 gap-12 lg:gap-24"
         variants={container}
       >
         {/* Left Side - Portfolio Info */}
@@ -136,7 +136,7 @@ const Home = () => {
           <div className="flex space-x-4">
             <a
               href="./myCv-Josiah.pdf"
-              className="px-6 py-3 bg-accent text-text rounded-full hover:bg-accent/90 transition-colors inline-flex items-center space-x-2"
+              className="px-6 py-3 bg-[#6b21a8] text-text rounded-full hover:bg-accent/90 transition-colors inline-flex items-center space-x-2"
               download={true}
             >
               <span>Download CV</span>
@@ -146,7 +146,7 @@ const Home = () => {
               to="Contact"
               smooth
               duration={500}
-              className="px-6 py-3 border border-accent text-text rounded-full hover:bg-accent/10 transition-colors cursor-pointer"
+              className="px-4 md:px-6 py-3 border border-accent text-text rounded-full hover:bg-accent/10 transition-colors cursor-pointer"
             >
               Contact Me
             </Link>

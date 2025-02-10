@@ -213,7 +213,7 @@ const ProjectsSection = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-accent text-background rounded-full hover:bg-accent/90 transition-colors"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-[#6b21a8] text-text rounded-full hover:bg-accent/90 transition-colors"
                     >
                       <FaGithub className="text-xs" /> Code
                     </a>

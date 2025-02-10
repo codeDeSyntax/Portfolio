@@ -95,7 +95,7 @@ const AboutSection = () => {
               transition={{ delay: 0.3 }}
               className="flex flex-wrap gap-4 mt-8"
             >
-              <button className="flex items-center gap-2 px-6 py-3 bg-accent text-background rounded-full hover:bg-accent/90 transition-colors">
+              <button className="flex items-center gap-2 px-6 py-3 bg-[#6b21a8] text-text rounded-full hover:bg-accent/90 transition-colors">
                 <FaDownload className="text-sm" />
                 Download CV
               </button>
